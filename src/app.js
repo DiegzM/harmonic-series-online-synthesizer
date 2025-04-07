@@ -784,10 +784,11 @@ async function initMIDIPlayer() {
                 if (e.target.selectedIndex !== 0) {
                     try {
                         const selectedOption = e.target.selectedOptions[0];
-                        const path = selectedOption.value;
+                        const originalPath = selectedOption.value;
+                        const fullPath = `${import.meta.env.BASE_URL}${originalPath}`;
                         const name = selectedOption.dataset.name;
 
-                        await loadMIDIFile(path, name);
+                        await loadMIDIFile(fullPath, name);
                     }
                     catch (error) {
                         console.error("Error loading MIDI file: ", error);
