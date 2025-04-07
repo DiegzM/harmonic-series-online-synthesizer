@@ -2,8 +2,10 @@ import { defineConfig } from 'vite';
 import fs from 'fs';
 import path from 'path';
 
-export default defineConfig({
-  base: '/',
+export default defineConfig(({command}) => ({
+
+  base: command === 'build' ? '/harmonic-series-online-synthesizer/' : '/',
+
   server: {
     https: {
       key: fs.readFileSync(path.resolve(__dirname, 'cert/localhost+2-key.pem')),
@@ -29,4 +31,4 @@ export default defineConfig({
       transformMixedEsModules: true,
     },
   }
-});
+}));
