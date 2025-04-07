@@ -1,0 +1,42 @@
+{
+    "Classical": [
+        {"name": "Vivaldi Winter (Allegro)", "path": "/assets/midi/Vivaldi%20Winter%20(Allegro).mid"},
+        {"name": "Badinerie", "path": "/assets/midi/Badinerie.mid"},
+        {"name": "Toccata and Fugue in D Minor", "path": "/assets/midi/Toccata%20and%20Fugue%20in%20D%20Minor.mid"},
+        {"name": "Moonlight Sonata", "path": "/assets/midi/Moonlight%20Sonata.mid"},
+        {"name": "Chopin Nocturne Eb Major", "path": "/assets/midi/Chopin%20Nocturne%20Eb%20Major.mid"},
+        {"name": "Eine Kleine Nachtmusik", "path": "/assets/midi/Eine%20Kleine%20Nachtmusik.mid"}
+    ],
+    "Jazz": [
+        {"name": "Take Five", "path": "/assets/midi/Take%20Five.mid"},
+        {"name": "Linus and Lucy", "path": "/assets/midi/Linus%20and%20Lucy.mid"},
+        {"name": "Giant Steps", "path": "/assets/midi/Giant%20Steps.mid"},
+        {"name": "Autumn Leaves", "path": "/assets/midi/Autumn%20Leaves.mid"}
+    ],
+    "Rock": [
+        {"name": "Eruption", "path": "/assets/midi/Eruption.mid"},
+        {"name": "Time", "path": "/assets/midi/Time.mid"},
+        {"name": "Here Comes The Sun", "path": "/assets/midi/Here%20Comes%20The%20Sun.mid"},
+        {"name": "Back In Black", "path": "/assets/midi/Back%20In%20Black.mid"}
+    ],
+    "Bossa Nova": [
+        {"name": "Mas Que Nada", "path": "/assets/midi/Mas%20Que%20Nada.mid"},
+        {"name": "The Girl From Ipanema", "path": "/assets/midi/The%20Girl%20From%20Ipanema.mid"}
+    ],
+    "Ragtime": [
+        {"name": "Fig Leaf Rag", "path": "/assets/midi/Fig%20Leaf%20Rag.mid"},
+        {"name": "Maple Leaf Rag", "path": "/assets/midi/Maple%20Leaf%20Rag.mid"},
+        {"name": "The Entertainer", "path": "/assets/midi/The%20Entertainer.mid"}
+    ],
+    "Movie/TV-Show Soundtrack": [
+        {"name": "Can You Hear The Music", "path": "/assets/midi/Can%20You%20Hear%20The%20Music.mid"},
+        {"name": "The Ecstasy of Gold", "path": "/assets/midi/The%20Ecstasy%20Of%20Gold.mid"},
+        {"name": "Howls Moving Castle Theme", "path": "/assets/midi/Howls%20Moving%20Castle%20Theme.mid"}
+    ],
+    "Meme": [
+        {"name": "Rat Dance", "path": "/assets/midi/Rat%20Dance.mid"},
+        {"name": "Rush E", "path": "/assets/midi/Rush%20E.mid"},
+        {"name": "Megalovania", "path": "/assets/midi/Megalovania.mid"},
+        {"name": "It Just Works", "path": "/assets/midi/It%20Just%20Works.mid"}
+    ]
+}
