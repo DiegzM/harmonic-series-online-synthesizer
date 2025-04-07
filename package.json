@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://diegzm.github.io/harmonic-series-online-synthesizer/",
   "scripts": {
-    "deploy": "vite build && gh-pages -d dist",
+    "deploy": "vite build && gh-pages -d dist --dotfiles true",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
