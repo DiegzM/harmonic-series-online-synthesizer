@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { parseMidi } from './node_modules/midi-file/index.js';
 import { Midi } from "./node_modules/@tonejs/midi/build/Midi.js";
+=======
+import { parseMidi } from 'midi-file';
+import { Midi } from "@tonejs/midi";
+>>>>>>> parent of 04aec2f (fix node modules)
 
 let midiAccess;
 let audioContext;
