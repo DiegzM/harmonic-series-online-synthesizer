@@ -1,42 +1,42 @@
 {
     "Classical": [
-        {"name": "Vivaldi Winter (Allegro)", "path": "/midi/Vivaldi%20Winter%20(Allegro).mid"},
-        {"name": "Badinerie", "path": "/midi/Badinerie.mid"},
-        {"name": "Toccata and Fugue in D Minor", "path": "/midi/Toccata%20and%20Fugue%20in%20D%20Minor.mid"},
-        {"name": "Moonlight Sonata", "path": "/midi/Moonlight%20Sonata.mid"},
-        {"name": "Chopin Nocturne Eb Major", "path": "/midi/Chopin%20Nocturne%20Eb%20Major.mid"},
-        {"name": "Eine Kleine Nachtmusik", "path": "/midi/Eine%20Kleine%20Nachtmusik.mid"}
+        {"name": "Vivaldi Winter (Allegro)", "path": "midi/Vivaldi%20Winter%20(Allegro).mid"},
+        {"name": "Badinerie", "path": "midi/Badinerie.mid"},
+        {"name": "Toccata and Fugue in D Minor", "path": "midi/Toccata%20and%20Fugue%20in%20D%20Minor.mid"},
+        {"name": "Moonlight Sonata", "path": "midi/Moonlight%20Sonata.mid"},
+        {"name": "Chopin Nocturne Eb Major", "path": "midi/Chopin%20Nocturne%20Eb%20Major.mid"},
+        {"name": "Eine Kleine Nachtmusik", "path": "midi/Eine%20Kleine%20Nachtmusik.mid"}
     ],
     "Jazz": [
-        {"name": "Take Five", "path": "/midi/Take%20Five.mid"},
-        {"name": "Linus and Lucy", "path": "/midi/Linus%20and%20Lucy.mid"},
-        {"name": "Giant Steps", "path": "/midi/Giant%20Steps.mid"},
-        {"name": "Autumn Leaves", "path": "/midi/Autumn%20Leaves.mid"}
+        {"name": "Take Five", "path": "midi/Take%20Five.mid"},
+        {"name": "Linus and Lucy", "path": "midi/Linus%20and%20Lucy.mid"},
+        {"name": "Giant Steps", "path": "midi/Giant%20Steps.mid"},
+        {"name": "Autumn Leaves", "path": "midi/Autumn%20Leaves.mid"}
     ],
     "Rock": [
-        {"name": "Eruption", "path": "/midi/Eruption.mid"},
-        {"name": "Time", "path": "/midi/Time.mid"},
-        {"name": "Here Comes The Sun", "path": "/midi/Here%20Comes%20The%20Sun.mid"},
-        {"name": "Back In Black", "path": "/midi/Back%20In%20Black.mid"}
+        {"name": "Eruption", "path": "midi/Eruption.mid"},
+        {"name": "Time", "path": "midi/Time.mid"},
+        {"name": "Here Comes The Sun", "path": "midi/Here%20Comes%20The%20Sun.mid"},
+        {"name": "Back In Black", "path": "midi/Back%20In%20Black.mid"}
     ],
     "Bossa Nova": [
-        {"name": "Mas Que Nada", "path": "/midi/Mas%20Que%20Nada.mid"},
-        {"name": "The Girl From Ipanema", "path": "/midi/The%20Girl%20From%20Ipanema.mid"}
+        {"name": "Mas Que Nada", "path": "midi/Mas%20Que%20Nada.mid"},
+        {"name": "The Girl From Ipanema", "path": "midi/The%20Girl%20From%20Ipanema.mid"}
     ],
     "Ragtime": [
-        {"name": "Fig Leaf Rag", "path": "/midi/Fig%20Leaf%20Rag.mid"},
-        {"name": "Maple Leaf Rag", "path": "/midi/Maple%20Leaf%20Rag.mid"},
-        {"name": "The Entertainer", "path": "/midi/The%20Entertainer.mid"}
+        {"name": "Fig Leaf Rag", "path": "midi/Fig%20Leaf%20Rag.mid"},
+        {"name": "Maple Leaf Rag", "path": "midi/Maple%20Leaf%20Rag.mid"},
+        {"name": "The Entertainer", "path": "midi/The%20Entertainer.mid"}
     ],
     "Movie/TV-Show Soundtrack": [
-        {"name": "Can You Hear The Music", "path": "/midi/Can%20You%20Hear%20The%20Music.mid"},
-        {"name": "The Ecstasy of Gold", "path": "/midi/The%20Ecstasy%20Of%20Gold.mid"},
-        {"name": "Howls Moving Castle Theme", "path": "/midi/Howls%20Moving%20Castle%20Theme.mid"}
+        {"name": "Can You Hear The Music", "path": "midi/Can%20You%20Hear%20The%20Music.mid"},
+        {"name": "The Ecstasy of Gold", "path": "midi/The%20Ecstasy%20Of%20Gold.mid"},
+        {"name": "Howls Moving Castle Theme", "path": "midi/Howls%20Moving%20Castle%20Theme.mid"}
     ],
     "Meme": [
-        {"name": "Rat Dance", "path": "/midi/Rat%20Dance.mid"},
-        {"name": "Rush E", "path": "/midi/Rush%20E.mid"},
-        {"name": "Megalovania", "path": "/midi/Megalovania.mid"},
-        {"name": "It Just Works", "path": "/midi/It%20Just%20Works.mid"}
+        {"name": "Rat Dance", "path": "midi/Rat%20Dance.mid"},
+        {"name": "Rush E", "path": "midi/Rush%20E.mid"},
+        {"name": "Megalovania", "path": "midi/Megalovania.mid"},
+        {"name": "It Just Works", "path": "midi/It%20Just%20Works.mid"}
     ]
 }
