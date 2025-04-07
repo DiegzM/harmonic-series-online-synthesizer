@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig(({command}) => ({
 
-  base: command === 'build' ? '/harmonic-series-online-synthesizer/' : '/',
+  base: '/',
 
   server: {
     https: {
