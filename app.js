@@ -1,5 +1,5 @@
-import { parseMidi } from 'midi-file';
-import { Midi } from "@tonejs/midi";
+import { parseMidi } from './node_modules/midi-file';
+import { Midi } from "./@tonejs/midi";
 
 let midiAccess;
 let audioContext;
