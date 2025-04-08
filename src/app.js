@@ -1423,6 +1423,7 @@ function initPiano() {
         "'": 17
     };
 
+    const piano = document.querySelector('.piano'); 
     const activeKeyboardNotes = {};
 
     const pianoWhiteKeys = document.querySelectorAll('.piano-white-key');
@@ -1500,11 +1501,13 @@ function initPiano() {
         }
     }
 
-    document.addEventListener('mousedown', () => {
+    function onMousedown() {
         isMouseDown = true;
-    });
+    }
+    document.addEventListener('mousedown', onMousedown);
+    document.addEventListener('touchstart', onMousedown);
 
-    document.addEventListener('mouseup', () => {
+    function onMouseup(event) {
         isMouseDown = false;
 
         if (lastClickedKey) {
@@ -1516,14 +1519,71 @@ function initPiano() {
                     currentVelocity
                 ])
             };
-
             onMIDIMessage(message);
-            lastClickedKey = null
+            lastClickedKey = null;
         }
-    });
+    }
+    
+    document.addEventListener('mouseup', onMouseup);
+    document.addEventListener('touchend', onMouseup);
+    document.addEventListener('touchcancel', onMouseup);
+
+    function onKeyTouchmove(event) {
+        event.preventDefault(); // Prevents scrolling while touching
+    
+        const touch = event.touches[0];
+        const element = document.elementFromPoint(touch.clientX, touch.clientY);
+    
+        const isPianoKey = element && (element.classList.contains('piano-white-key') || 
+        element.classList.contains('piano-black-key'));
+
+        if (isPianoKey && element !== lastClickedKey) {
+
+            if (lastClickedKey) {
+                const prevMidiNote = offsetToMIDIValue(parseInt(lastClickedKey.dataset.note));
+                
+                const message = {
+                    data: new Uint8Array([
+                        128,
+                        prevMidiNote,
+                        currentVelocity
+                    ])
+                };
+                onMIDIMessage(message);
+                setActive(lastClickedKey, false);
+            }
+            const midiNote = offsetToMIDIValue(parseInt(element.dataset.note));
+            lastClickedKey = element;
+    
+            const message = {
+                data: new Uint8Array([
+                    144,
+                    midiNote,
+                    currentVelocity
+                ])
+            };
+            onMIDIMessage(message);
+            setActive(element, true);
+        }
+        else if (!isPianoKey && lastClickedKey) {
+            const prevMidiNote = offsetToMIDIValue(parseInt(lastClickedKey.dataset.note));
+            const message = {
+                data: new Uint8Array([
+                    128,
+                    prevMidiNote,
+                    currentVelocity
+                ])
+            };
+            onMIDIMessage(message);
+            setActive(lastClickedKey, false);
+        }
+    }
+
+    piano.addEventListener('touchmove', onKeyTouchmove);
 
     pianoKeys.forEach(key => {
-        key.addEventListener('mousedown', () => {
+        function onKeyMousedown(event) {
+            event.preventDefault();
             const midiNote = offsetToMIDIValue(parseInt(key.dataset.note));
             lastClickedKey = key;
             
@@ -1536,9 +1596,11 @@ function initPiano() {
             };
             onMIDIMessage(message);
             setActive(key, true);
-        });
+        }
+        key.addEventListener('mousedown', onKeyMousedown);
+        key.addEventListener('touchstart', onKeyMousedown);
 
-        key.addEventListener('mouseenter', () => {
+        function onKeyMouseenter() {
             if (isMouseDown) {
                 const midiNote = offsetToMIDIValue(parseInt(key.dataset.note));
                 lastClickedKey = key;
@@ -1553,9 +1615,11 @@ function initPiano() {
                 onMIDIMessage(message);
                 setActive(key, true);
             }
-        });
+        }
 
-        key.addEventListener('mouseleave', () => {
+        key.addEventListener('mouseenter', onKeyMouseenter); 
+
+        function onKeyMouseleave() {
             if (isMouseDown) {
                 const midiNote = offsetToMIDIValue(parseInt(key.dataset.note));
                 lastClickedKey = key;
@@ -1571,10 +1635,28 @@ function initPiano() {
                 onMIDIMessage(message);
                 setActive(key, false);
             }
-        });
+        }
 
-        key.addEventListener('mouseup', () => {
+        key.addEventListener('mouseleave', onKeyMouseleave);
+
+        function onKeyMouseup(event) {
+
+            if (event.type === 'touchend' && lastClickedKey) {
+                const midiNote = offsetToMIDIValue(parseInt(lastClickedKey.dataset.note));
+                
+                const message = {
+                    data: new Uint8Array([
+                        128,
+                        midiNote,
+                        currentVelocity
+                    ])
+                };
+                onMIDIMessage(message);
+                setActive(lastClickedKey, false);
+            }
+
             const midiNote = offsetToMIDIValue(parseInt(key.dataset.note));
+            
             lastClickedKey = key;
             
             const message = {
@@ -1586,10 +1668,14 @@ function initPiano() {
             };
             onMIDIMessage(message);
             setActive(key, false);
-        });
+        }
+
+        key.addEventListener('mouseup', onKeyMouseup);
+        key.addEventListener('touchend', onKeyMouseup);
     });
 
-    sustainButton.addEventListener('mousedown', () => {
+    function onSustainMousedown(event) {
+        event.preventDefault();
         const message = {
             data: new Uint8Array([
                 176,
@@ -1599,9 +1685,12 @@ function initPiano() {
         };
         onMIDIMessage(message)
         setActive(sustainButton, true)
-    });
+    }
 
-    sustainButton.addEventListener('mouseup', () => {
+    sustainButton.addEventListener('mousedown', onSustainMousedown);
+    sustainButton.addEventListener('touchstart', onSustainMousedown);
+
+    function onSustainMouseup() {
         const message = {
             data: new Uint8Array([
                 176,
@@ -1611,73 +1700,127 @@ function initPiano() {
         };
         onMIDIMessage(message)
         setActive(sustainButton, false)
-    });
+    }
 
-    octaveDownButton.addEventListener('mousedown', () => {
+    sustainButton.addEventListener('mouseup', onSustainMouseup);
+    sustainButton.addEventListener('mouseleave', onSustainMouseup);
+    sustainButton.addEventListener('touchend', onSustainMouseup);
+
+    function onOctaveDownButtonMousedown(event) {
+        event.preventDefault();
         if (currentOctave > 0) {
             currentOctave--;
             updateOctaveDisplay();
         }
         setActive(octaveDownButton, true);
-    });
-    octaveDownButton.addEventListener('mouseup', () => {
-        setActive(octaveDownButton, false);
-    });
+    }
 
-    octaveUpButton.addEventListener('mousedown', () => {
+    octaveDownButton.addEventListener('mousedown', onOctaveDownButtonMousedown);
+    octaveDownButton.addEventListener('touchstart', onOctaveDownButtonMousedown);
+
+    function onOctaveDownButtonMouseup() {
+        setActive(octaveDownButton, false);
+    }
+    octaveDownButton.addEventListener('mouseup', onOctaveDownButtonMouseup);
+    octaveDownButton.addEventListener('mouseleave', onOctaveDownButtonMouseup);
+    octaveDownButton.addEventListener('touchend', onOctaveDownButtonMouseup);
+
+    function onOctaveUpButtonMousedown(event) {
+        event.preventDefault();
         if (currentOctave < 7) {
             currentOctave++;
             updateOctaveDisplay();
         }
         setActive(octaveUpButton, true);
-    });
-    octaveUpButton.addEventListener('mouseup', () => {
-        setActive(octaveUpButton, false)
-    });
+    }
 
-    velocityDownButton.addEventListener('mousedown', () => {
+    octaveUpButton.addEventListener('mousedown', onOctaveUpButtonMousedown);
+    octaveUpButton.addEventListener('touchstart', onOctaveUpButtonMousedown);
+
+    function onOctaveUpButtonMouseup() {
+        setActive(octaveUpButton, false)
+    }
+    octaveUpButton.addEventListener('mouseup', onOctaveUpButtonMouseup);
+    octaveUpButton.addEventListener('mouseleave', onOctaveUpButtonMouseup);
+    octaveUpButton.addEventListener('touchend', onOctaveUpButtonMouseup);
+
+    function onVelocityDownButtonMousedown(event) {
+        event.preventDefault();
         if (currentVelocity > 1) {
             currentVelocity = Math.max(1, currentVelocity - 5);
             updateVelocityDisplay();
         }
         setActive(velocityDownButton, true);
-    });
-    velocityDownButton.addEventListener('mouseup', () => {
-        setActive(velocityDownButton, false)
-    });
+    }
 
-    velocityUpButton.addEventListener('mousedown', () => {
+    velocityDownButton.addEventListener('mousedown', onVelocityDownButtonMousedown);
+    velocityDownButton.addEventListener('touchstart', onVelocityDownButtonMousedown);
+
+    function onVelocityDownButtonMouseup() {
+        setActive(velocityDownButton, false)
+    }
+
+    velocityDownButton.addEventListener('mouseup', onVelocityDownButtonMouseup);
+    velocityDownButton.addEventListener('mouseleave', onVelocityDownButtonMouseup);
+    velocityDownButton.addEventListener('touchend', onVelocityDownButtonMouseup);
+    
+    function onVelocityUpButtonMousedown(event) {
+        event.preventDefault();
         if (currentVelocity < 128) {
             currentVelocity = Math.min(127, currentVelocity + 5);
             updateVelocityDisplay();
         }
         setActive(velocityUpButton, true);
-    });
-    velocityUpButton.addEventListener('mouseup', () => {
-        setActive(velocityUpButton, false)
-    });
+    }
 
-    pitchBendDownButton.addEventListener('mousedown', () => {
+    velocityUpButton.addEventListener('mousedown', onVelocityUpButtonMousedown);
+    velocityUpButton.addEventListener('touchstart', onVelocityUpButtonMousedown);
+
+    function onVelocityUpButtonMouseup() {
+        setActive(velocityUpButton, false)
+    }
+
+    velocityUpButton.addEventListener('mouseup', onVelocityUpButtonMouseup);
+    velocityUpButton.addEventListener('mouseleave', onVelocityUpButtonMouseup);
+    velocityUpButton.addEventListener('touchend', onVelocityUpButtonMouseup);
+
+    function onPitchBendDownMousedown(event) {
+        event.preventDefault();
         pitchBendState[1] = true;
         updatePitchBend();
         setActive(pitchBendDownButton, true);
-    });
-    pitchBendDownButton.addEventListener('mouseup', () => {
+    }
+    pitchBendDownButton.addEventListener('mousedown', onPitchBendDownMousedown);
+    pitchBendDownButton.addEventListener('touchstart', onPitchBendDownMousedown);
+
+    function onPitchBendDownMouseup() {
         pitchBendState[1] = false;
         updatePitchBend();
         setActive(pitchBendDownButton, false)
-    });
-    pitchBendUpButton.addEventListener('mousedown', () => {
+    }
+
+    pitchBendDownButton.addEventListener('mouseup', onPitchBendDownMouseup);
+    pitchBendDownButton.addEventListener('mouseleave', onPitchBendDownMouseup);
+    pitchBendDownButton.addEventListener('touchend', onPitchBendDownMouseup);
+
+    function onPitchBendUpMousedown(event) {
+        event.preventDefault();
         pitchBendState[2] = true;
         updatePitchBend();
         setActive(pitchBendUpButton, true);
-    });
-    pitchBendUpButton.addEventListener('mouseup', () => {
+    }
+    pitchBendUpButton.addEventListener('mousedown', onPitchBendUpMousedown);
+    pitchBendUpButton.addEventListener('touchstart', onPitchBendUpMousedown);
+
+    function onPitchBendUpMouseup() {
         pitchBendState[2] = false;
         updatePitchBend();
         setActive(pitchBendUpButton, false)
-    });
+    }
 
+    pitchBendUpButton.addEventListener('mouseup', onPitchBendUpMouseup);
+    pitchBendUpButton.addEventListener('mouseleave', onPitchBendUpMouseup);
+    pitchBendUpButton.addEventListener('touchend', onPitchBendUpMouseup);
 
     document.addEventListener('keydown', e => {
         let key = e.key.toLowerCase();
