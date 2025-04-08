@@ -30,7 +30,7 @@
     ],
     "Movie/TV-Show Soundtrack": [
         {"name": "Can You Hear The Music", "path": "midi/Can%20You%20Hear%20The%20Music.mid"},
-        {"name": "The Ecstasy of Gold", "path": "midi/The%20Ecstasy%20Of%20Gold.mid"},
+        {"name": "The Ecstasy Of Gold", "path": "midi/The%20Ecstasy%20Of%20Gold.mid"},
         {"name": "Howls Moving Castle Theme", "path": "midi/Howls%20Moving%20Castle%20Theme.mid"}
     ],
     "Meme": [
