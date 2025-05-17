@@ -5,13 +5,15 @@
         {"name": "Toccata and Fugue in D Minor", "path": "midi/Toccata%20and%20Fugue%20in%20D%20Minor.mid"},
         {"name": "Moonlight Sonata", "path": "midi/Moonlight%20Sonata.mid"},
         {"name": "Chopin Nocturne Eb Major", "path": "midi/Chopin%20Nocturne%20Eb%20Major.mid"},
-        {"name": "Eine Kleine Nachtmusik", "path": "midi/Eine%20Kleine%20Nachtmusik.mid"}
+        {"name": "Eine Kleine Nachtmusik", "path": "midi/Eine%20Kleine%20Nachtmusik.mid"},
+        {"name": "Liszt Paganini Etude No. 6", "path": "midi/Liszt%20Paganini%20Etude%20No.%206.mid"}
     ],
     "Jazz": [
         {"name": "Take Five", "path": "midi/Take%20Five.mid"},
         {"name": "Linus and Lucy", "path": "midi/Linus%20and%20Lucy.mid"},
         {"name": "Giant Steps", "path": "midi/Giant%20Steps.mid"},
-        {"name": "Autumn Leaves", "path": "midi/Autumn%20Leaves.mid"}
+        {"name": "Autumn Leaves", "path": "midi/Autumn%20Leaves.mid"},
+        {"name": "Tea For Two", "path": "midi/Tea%20For%20Two.mid"}
     ],
     "Rock": [
         {"name": "Eruption", "path": "midi/Eruption.mid"},
