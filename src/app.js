@@ -218,15 +218,32 @@ function updateHarmonicGUI() {
 
 function updateHarmonicRows() {
 
+    function getOrdinalSuffix(i) {
+        const j = i % 10;
+        const k = i % 100;
+        
+        if (j === 1 && k !== 11) {
+            return "st";
+        }
+        if (j === 2 && k !== 12) {
+            return "nd";
+        }
+        if (j === 3 && k !== 13) {
+            return "rd";
+        }
+        return "th";
+    }
+
     harmonicsContainer.innerHTML = ''
 
     harmonicSettings.forEach((setting, index) => {
         if (index !== 0) {
             const clone = document.importNode(harmonicRow.content, true);
             const label = clone.querySelector('.harmonic-label');
+            const suffix = getOrdinalSuffix(index);
 
             if (label) {
-                label.innerHTML = `${index}`
+                label.innerHTML = `${index}${suffix}`
             }
 
             const volumeSlider = clone.querySelector('.harmonic-volume-slider');
@@ -407,8 +424,6 @@ function onMIDIMessage (input, midiPlayerActivated=false) {
     const note = input.data[1];
     const velocity = input.data[2];
 
-    const activeNotesMessage = document.querySelector('.active-notes-message')
-
     if (command === 144) {
         if (velocity > 0) {
             noteOn(note, velocity, midiPlayerActivated);
@@ -426,9 +441,6 @@ function onMIDIMessage (input, midiPlayerActivated=false) {
     if (command === 224) {
         onPitchBend(velocity)
     }
-    
-
-    activeNotesMessage.textContent = JSON.stringify(Object.keys(activeNotes));
 
 }
 
@@ -702,7 +714,15 @@ function drawWaveform() {
     const height = waveformGraph.height;
     const timeScale = 1 / referenceFrequency; 
 
-    waveformCtx.strokeStyle = 'rgb(0, 255, 0)';
+    const gradient = waveformCtx.createLinearGradient(0, 0, width, 0);
+    gradient.addColorStop(0, 'rgb(255, 209, 69)');  
+    gradient.addColorStop(0.5, 'rgb(255, 215, 0)');
+    gradient.addColorStop(1, 'rgb(255, 180, 40)');
+        
+    waveformCtx.strokeStyle = gradient;
+    waveformCtx.shadowColor = 'rgb(255, 165, 0)';  
+    waveformCtx.shadowBlur = 12;
+
     waveformCtx.lineWidth = 2;
     waveformCtx.beginPath();
 

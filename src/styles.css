@@ -1,41 +1,329 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Raleway:wght@300;400;600&display=swap');
+
+:root {
+    --gold-very-dark: rgb(24, 20, 15);
+    --gold-dark: rgba(57,40,16,1);
+    --gold-medium: rgba(105, 85, 32, 1);
+    --gold-bright: rgba(240, 188, 19,1);
+    --gold-very-bright: rgb(255, 222, 157);
 }
 
-html, body {
+html {
     width: 100vw;
-    min-width: 100vw;
-    max-width: 100vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: linear-gradient(327deg, var(--gold-dark), black 100%);
+    color: var(--gold-very-bright);
+    font-family: 'Raleway';
+    position: relative; 
+}
+body {
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-  }
-
-body {
-    background-color: black;
+    overflow: hidden;
 }
 
 .container {
-    color: #cccccc;
-    margin: 1rem;
+    width: 100%;
+    height: 100vh;
+    padding: 2rem;
+    color: var(--gold-very-bright);
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box; 
+    scrollbar-color: rgba(71, 71, 71, 0.5) transparent;
+    font-family: 'Raleway';
+    display: flex-start;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+
+.container::-webkit-scrollbar-track {
+    background: transparent;   
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: transparent;   
+}
+
+
+.header {
+    top: 0;
+    padding: 2rem;
+}
+
+#header-title {
+    color: var(--gold-very-bright);
+    font-family: 'Cinzel';
+    font-size: 50px;
+    font-weight: 600;
+    text-shadow: 
+        0 0 5px var(--gold-bright),
+        0 0 10px var(--gold-bright)
+}
+
+#header-subtitle {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card {
+    max-width: 1000px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 8px;
+    border: 2px solid var(--gold-medium);
+    background: linear-gradient(135deg, var(--gold-very-dark), black) padding-box
+}
+
+.card-header {
+    color: var(--gold-bright);
+    font-family: 'Raleway';
+    font-size: 25px;
+    font-weight: 600;
+    text-shadow: 
+        0 0 1px var(--gold-bright),
+        0 0 3px var(--gold-bright)
+}
+.card-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-medium), transparent);
+    margin: 1rem 0;
+}
+
+.card-subheader {
+    font-size: 15px;
+    padding: 1rem;
+    color: var(--gold-bright);
+    opacity: 0.85;
+    margin-bottom: 1.25rem;
+    text-align: center;
+    font-style: italic;
+    padding: 0 1rem;
+    line-height: 1.4;
+}
+
+.card-bolded-text {
+    font-size: 15px;
+    color: var(--gold-bright);
+    font-weight: 600;
+    text-shadow: 
+        0 0 1px var(--gold-bright),
+        0 0 2px var(--gold-bright)
+}
+
+.card-text {
+    font-size: 15px;
+    color: var(--gold-bright);
+}
+
+.card-dropdown {
+    font-size: 15px;
+    min-width: 120px;
+    width: 100%;
+    background-color: var(--gold-dark);
+    color: var(--gold-very-bright);
+    font-weight: 400;
+    border: 1px solid var(--gold-medium);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.card-button-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1rem;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.card-subcontainer {
+    margin: 1rem 0;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 2px solid var(--gold-medium);
+}
+
+.card-button {
+    flex: 1; 
+    font-size: 15px;
+    font-weight: 600;
+    min-width: 120px;
+    background-color: var(--gold-dark);
+    color: var(--gold-very-bright);
+    border: 1px solid var(--gold-medium);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.card-button:hover {
+    background-color: var(--gold-medium);
+    border: 1px solid var(--gold-bright);
+    color: var(--gold-very-bright);
+    transition: all 0.2s ease;
+}
+
+.card-button:active {
+    background-color: var(--gold-very-dark);
+    border: 1px solid var(--gold-very-bright);
+    color: var(--gold-very-bright);
+    transition: all 0.2s ease;
+}
+
+.card-reset-button {
+    flex: 1; 
+    font-size: 20px;
+    font-weight: 600;
+    min-width: 120px;
+    background-color: rgb(74, 38, 19);
+    color: var(--gold-very-bright);
+    border: 1px solid var(--gold-medium);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.card-reset-button:hover {
+    background-color: rgb(143, 74, 36);
+    border: 1px solid var(--gold-bright);
+    transition: all 0.2s ease;
+}
+
+.card-reset-button:active {
+    background-color: rgb(32, 16, 8);
+    border: 1px solid var(--gold-very-bright);
+    transition: all 0.2s ease;
+}
+
+.card-play-button {
+    flex: 1; 
+    font-size: 20px;
+    font-weight: 600;
+    min-width: 120px;
+    background-color: rgb(74, 105, 40);
+    color: var(--gold-very-bright);
+    border: 1px solid var(--gold-medium);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.card-play-button:hover {
+    background-color: rgb(73, 196, 57);
+    border: 1px solid var(--gold-bright);
+    transition: all 0.2s ease;
+}
+
+.card-play-button:active {
+    background-color: rgb(13, 27, 14);
+    border: 1px solid var(--gold-very-bright);
+    transition: all 0.2s ease;
+}
+
+
+#harmonics-container {
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid var(--gold-medium);
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+}
+
+.harmonic-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(105, 85, 32, 0.3);
+    box-sizing: border-box;
+}
+
+.harmonic-label {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold-very-bright);
+}
+.harmonic-volume-label {
+    flex: 2;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--gold-very-bright);
+}
+.harmonic-volume-slider {
+    flex: 12;
+}
+
+.harmonic-row-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-medium), transparent);
+}
+
+.card-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: linear-gradient(to right, var(--gold-medium), var(--gold-bright));
+    color: white;
+    border-radius: 3px;
+    outline: none;
+}
+
+.card-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--gold-very-bright);
+    cursor: pointer;
+    border: 1px solid var(--gold-medium);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
 }
 
 #harmonics-header {
     padding-top: 5rem;
     padding-bottom: 2rem;
-    font-size: 50px
 }
 
 #waveform-graph {
+    margin-left: auto;
+    margin-right: auto;
     display: block;
     background-color: #080808;
     min-width: 65%;
     max-width: 100%;
     aspect-ratio: 2 / 1;
-    border: 3px solid gray;
-    border-radius: 4px;
+    border-radius: 8px;
+    border: 2px solid var(--gold-medium);
 }
 
 #midi-progress-bar {
@@ -86,8 +374,7 @@ body {
 }
 
 .piano {
-    min-width: 50%;
-    max-width: 800px;
+    width: 100%;
     aspect-ratio: 3.5 / 1;
     position: relative;
     background-color: #333;
@@ -193,9 +480,12 @@ body {
 .piano-settings-button {
     padding: 1rem;
     min-width: 1rem;
-    color: white;
-    background-color: #606060;
+    color: var(--gold-very-bright);
+    font-family: 'Raleway';
+    font-weight: 600;
+    background-color: var(--gold-very-dark);
     border-radius: 5px;
+    border: 1px solid var(--gold-medium);
     transition: background-color 0.1s;
     aspect-ratio: 1 / 1;
 }
@@ -203,27 +493,30 @@ body {
 .piano-settings-button-double {
     padding: 1rem;
     width: 6rem;
-    color: white;
-    background-color: #606060;
+    color: var(--gold-very-bright);
+    font-family: 'Raleway';
+    font-weight: 600;
+    background-color: var(--gold-very-dark);
     border-radius: 5px;
+    border: 1px solid var(--gold-medium);
     transition: background-color 0.1s;
     aspect-ratio: 2 / 1;
 }
 
 .piano-settings-button:hover {
-    background-color: #404040;
+    background-color: var(--gold-dark);
 }
 
 .piano-settings-button.active {
-    background-color: #303030;
+    background-color: black;
 }
 
 .piano-settings-button-double:hover {
-    background-color: #404040;
+    background-color: var(--gold-dark);
 }
 
 .piano-settings-button-double.active {
-    background-color: #303030;
+    background-color: black;
 }
 
 .piano-setting-label {

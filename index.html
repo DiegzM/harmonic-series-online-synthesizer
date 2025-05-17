@@ -9,153 +9,163 @@
     </head>
     <body>
         <div class="container">
-            <div class="waveform-container">
+            <div class="header">
+                <header id="header-title">Harmonic Series Online Visualizer</header>
+                <header id="header-subtitle">Play the harmonic series using your computer keyboard or a MIDI device!</header>
+            </div>
+            <div class="card">
+                <div class="card-header">HARMONIC SERIES:</div>
+                <hr class="card-divider"></hr>
+                <div class="card-subheader">Add harmonics and play around with their amplitudes to see how your sound changes! You can also select an existing harmonics preset.</div>
+                <div id="harmonics-controls">
+                    <div id="harmonic-presets-container" class="card-subcontainer">
+                        <label id="harmonic-presets-label" class="card-bolded-text">Harmonic Presets:</label>
+                        <select id="harmonic-presets-dropdown" class="card-dropdown">
+                            <option value="" disabled selected>Select a preset: </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="harmonic-add-remove card-button-container">
+                    <button id="harmonic-add" class="card-button">Add</button>
+                    <button id="harmonic-remove" class="card-button">Remove</button>
+                </div>
+                <div id="harmonics-container">
+                </div>
+                
+            </div>
+
+            <div class="card">
+                <div class="card-header">AUDIO:</div>
+                <hr class="card-divider"></hr>
+                <div class="card-subheader">See the current soundwave graph, calculated using Fourier Synthesis.</div>
                 <canvas id="waveform-graph"></canvas>
-            </div>
-            <br>
-            <div class="audio-context-settings">
-                <button id="reset-audio">Reset Audio</button>
-            </div>
-            <div class="piano-container no-select">
-                <div class="piano">
-                    <div class="piano-white-keys">
-                        <div class="piano-white-key" role="button" data-note="0"><label class="key-label">A</label></div>
-                        <div class="piano-white-key" role="button" data-note="2"><label class="key-label">S</label></div>
-                        <div class="piano-white-key" role="button" data-note="4"><label class="key-label">D</label></div>
-                        <div class="piano-white-key" role="button" data-note="5"><label class="key-label">F</label></div>
-                        <div class="piano-white-key" role="button" data-note="7"><label class="key-label">G</label></div>
-                        <div class="piano-white-key" role="button" data-note="9"><label class="key-label">H</label></div>
-                        <div class="piano-white-key" role="button" data-note="11"><label class="key-label">J</label></div>
-                        <div class="piano-white-key" role="button" data-note="12"><label class="key-label">K</label></div>
-                        <div class="piano-white-key" role="button" data-note="14"><label class="key-label">L</label></div>
-                        <div class="piano-white-key" role="button" data-note="16"><label class="key-label">;</label></div>
-                        <div class="piano-white-key" role="button" data-note="17"><label class="key-label">'</label></div>
-                    </div>
-                    <div class="piano-black-keys">
-                        <div class="piano-black-key" role="button" data-note="1"><label class="key-label">W</label></div>
-                        <div class="piano-black-key" role="button" data-note="3"><label class="key-label">E</label></div>
-                        <div class="piano-black-key" role="button" data-note="6"><label class="key-label">T</label></div>
-                        <div class="piano-black-key" role="button" data-note="8"><label class="key-label">Y</label></div>
-                        <div class="piano-black-key" role="button" data-note="10"><label class="key-label">U</label></div>
-                        <div class="piano-black-key" role="button" data-note="13"><label class="key-label">O</label></div>
-                        <div class="piano-black-key" role="button" data-note="15"><label class="key-label">P</label></div>
-                    </div>
-                </div>
-                <div class="piano-settings">
-                    <div class="piano-settings-button-double" role="button" data-key="shift">
-                        <label class="piano-setting-label">Sustain<br><br><br>shift</label>
-                    </div>
-                    <div class="piano-settings-button" role="button" data-key="z">
-                        <label class="piano-setting-label">Octave Down<br><br>Z</label>
-                    </div>
-                    <div class="piano-settings-button" role="button" data-key="x">
-                        <label class="piano-setting-label">Octave Up<br><br>X</label>
-                    </div>
-                    <div class="piano-settings-button" role="button" data-key="c">
-                        <label class="piano-setting-label">Velocity Down<br><br>C</label>
-                    </div>
-                    <div class="piano-settings-button" role="button" data-key="v">
-                        <label class="piano-setting-label">Velocity Up<br><br>V</label>
-                    </div>
-                    <div class="piano-settings-button" role="button" data-key="1">
-                        <label class="piano-setting-label">Pitch Bend Up<br><br>1</label>
-                    </div>
-                    <div class="piano-settings-button" role="button" data-key="2">
-                        <label class="piano-setting-label">Pitch Bend Up<br><br>2</label>
-                    </div>
-                </div>
-                <div class="piano-info">
-                    <label class="piano-info-label" data="octave-display">Current Octave: 4</label>
-                    <label class="piano-info-label" data="velocity-display">Velocity: 100</label>
-                </div>
-            </div>
-            <br>
-            <div class="midi-message">Connecting to MIDI...</div>
-            <div class="active-notes-message">Active Notes: </div>
-            <br>
-            <div class="midi-player-container">
-                <label id="midi-player-label">Play MIDI:</label>
-                <div class="midi-player-select">
-                    <label id="midi-player-select-label">Select Preset MIDI File:</label>
-                    <select id="midi-player-select-dropdown">
-                        <option value="" disabled selected>Select</option>
-                    </select>
-                </div>
-                <div class="midi-player-upload">
-                    <label id="midi-player-upload-label">Upload MIDI File: </label>
-                    <input type="file" id="midi-player-upload-button" class="midi-player-upload-button" accept=".mid,.midi">
-                </div>
-                <label id="midi-current-file-label"></label>
-                <div class="midi-playback">
-                    <div class="midi-playback-buttons">
-                        <button id="midi-play">Play</button>    
-                        <label id="midi-loop-label">Looping: </label>
-                        <input type="checkbox" id="midi-loop-checkbox">
-                    </div>
-                    <div class="midi-speed-control">
-                        <label id="midi-speed-control-label">Speed:</label>
-                        <input type="range" min="0.001" max="2.01" step="0.05" value="1.0" id="midi-speed-control-bar"></input>
-                        <label id="midi-speed-control-value">1.0x</label>
-                    </div>
-                    <div id="midi-progress-bar">
-                        <div id="midi-progress-fill"></div>
-                        <div id="midi-progress-handle"></div>
-                    </div>
-                    <div class="midi-time-display">
-                        <span id="midi-current-time">0:00</span>
-                        <span id="midi-total-time">0:00</span>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div id="debug">Debug</div>
-            <div id="harmonics-controls">
-                <div id="harmonic-presets-container">
-                    <label id="harmonic-presets-label">Harmonic Presets:</label>
-                    <select id="harmonic-presets-dropdown">
-                        <option value="" disabled selected>Select a preset: </option>
-                    </select>
-                </div>
-                <div class="harmonic-attack-release">
+                <hr class="card-divider"></hr>
+                <div class="card-subheader">Change audio settings such as Attack, Release, or Transpose.</div>
+                <div class="card-subcontainer">
                     <div class="harmonic-attack">
                         <label id="harmonic-attack-label">Attack: </label>
-                        <input type="range" min="0.001" max="4" step="0.001" value="0.001" id="harmonic-attack-slider"></input>
+                        <input type="range" min="0.001" max="4" step="0.001" value="0.001" id="harmonic-attack-slider" class="card-slider"></input>
                         <label id="harmonic-attack-value-label">0.001</label>
                     </div>
                     <div class="harmonic-release">
                         <label id="harmonic-release-label">Release: </label>
-                        <input type="range" min="0.001" max="4" step="0.001" value="0.001" id="harmonic-release-slider"></input>
+                        <input type="range" min="0.001" max="4" step="0.001" value="0.001" id="harmonic-release-slider" class="card-slider"></input>
                         <label id="harmonic-release-value-label">0.001</label>
                     </div>
-                <div class="transpose-semitones">
-                    <label id="transpose-semitones-label">Transpose (semitones): </label>
-                    <input type="range" min="-15" max="15" step="1" value="0" id="transpose-semitones-slider"></input>
-                    <label id="transpose-semitones-value-label">0</label>
+                    <div class="transpose-semitones">
+                        <label id="transpose-semitones-label">Transpose (semitones): </label>
+                        <input type="range" min="-15" max="15" step="1" value="0" id="transpose-semitones-slider" class="card-slider"></input>
+                        <label id="transpose-semitones-value-label">0</label>
+                    </div>
+                    <div class="transpose-cents">
+                        <label id="transpose-cents-label">Transpose (cents): </label>
+                        <input type="range" min="-50" max="50" step="1" value="0" id="transpose-cents-slider" class="card-slider"></input>
+                        <label id="transpose-cents-value-label">0</label>
+                    </div>
                 </div>
-                <div class="transpose-cents">
-                    <label id="transpose-cents-label">Transpose (cents): </label>
-                    <input type="range" min="-50" max="50" step="1" value="0" id="transpose-cents-slider"></input>
-                    <label id="transpose-cents-value-label">0</label>
-                </div>
-                </div>
-                <div class="harmonic-add-remove">
-                    <button id="harmonic-add">Add</button>
-                    <button id="harmonic-remove">Remove</button>
-                </div>
+                <div class="card-subheader">Reset the Audio if it crashes.</div>
+                <button id="reset-audio" class="card-reset-button">Reset Audio</button>
+
             </div>
-            <div id="harmonics-header">HARMONICS:</div>
-            <br>
-            <div id="harmonics-container">
+
+            <div class="card">
+                <div class="card-header">MIDI:</div>
+                <hr class="card-divider"></hr>
+                <div class="card-subheader">Press the keys or buttons on the digital piano, or use a MIDI device to play!</div>
+                <div class="midi-message card-bolded-text">Connecting to MIDI...</div>
+                <div class="piano-container no-select card-subcontainer">
+                    <div class="piano">
+                        <div class="piano-white-keys">
+                            <div class="piano-white-key" role="button" data-note="0"><label class="key-label">A</label></div>
+                            <div class="piano-white-key" role="button" data-note="2"><label class="key-label">S</label></div>
+                            <div class="piano-white-key" role="button" data-note="4"><label class="key-label">D</label></div>
+                            <div class="piano-white-key" role="button" data-note="5"><label class="key-label">F</label></div>
+                            <div class="piano-white-key" role="button" data-note="7"><label class="key-label">G</label></div>
+                            <div class="piano-white-key" role="button" data-note="9"><label class="key-label">H</label></div>
+                            <div class="piano-white-key" role="button" data-note="11"><label class="key-label">J</label></div>
+                            <div class="piano-white-key" role="button" data-note="12"><label class="key-label">K</label></div>
+                            <div class="piano-white-key" role="button" data-note="14"><label class="key-label">L</label></div>
+                            <div class="piano-white-key" role="button" data-note="16"><label class="key-label">;</label></div>
+                            <div class="piano-white-key" role="button" data-note="17"><label class="key-label">'</label></div>
+                        </div>
+                        <div class="piano-black-keys">
+                            <div class="piano-black-key" role="button" data-note="1"><label class="key-label">W</label></div>
+                            <div class="piano-black-key" role="button" data-note="3"><label class="key-label">E</label></div>
+                            <div class="piano-black-key" role="button" data-note="6"><label class="key-label">T</label></div>
+                            <div class="piano-black-key" role="button" data-note="8"><label class="key-label">Y</label></div>
+                            <div class="piano-black-key" role="button" data-note="10"><label class="key-label">U</label></div>
+                            <div class="piano-black-key" role="button" data-note="13"><label class="key-label">O</label></div>
+                            <div class="piano-black-key" role="button" data-note="15"><label class="key-label">P</label></div>
+                        </div>
+                    </div>
+                    <div class="piano-settings">
+                        <div class="piano-settings-button-double" role="button" data-key="shift">
+                            <label class="piano-setting-label">Sustain<br><br><br>shift</label>
+                        </div>
+                        <div class="piano-settings-button" role="button" data-key="z">
+                            <label class="piano-setting-label">Octave Down<br><br>Z</label>
+                        </div>
+                        <div class="piano-settings-button" role="button" data-key="x">
+                            <label class="piano-setting-label">Octave Up<br><br>X</label>
+                        </div>
+                        <div class="piano-settings-button" role="button" data-key="c">
+                            <label class="piano-setting-label">Velocity Down<br><br>C</label>
+                        </div>
+                        <div class="piano-settings-button" role="button" data-key="v">
+                            <label class="piano-setting-label">Velocity Up<br><br>V</label>
+                        </div>
+                        <div class="piano-settings-button" role="button" data-key="1">
+                            <label class="piano-setting-label">Pitch Bend Up<br><br>1</label>
+                        </div>
+                        <div class="piano-settings-button" role="button" data-key="2">
+                            <label class="piano-setting-label">Pitch Bend Up<br><br>2</label>
+                        </div>
+                    </div>
+                    <div class="piano-info">
+                        <label class="piano-info-label" data="octave-display">Current Octave: 4</label>
+                        <label class="piano-info-label" data="velocity-display">Velocity: 100</label>
+                    </div>
+                </div>
+                <hr class="card-divider">
+                <div class="card-subheader">Play a MIDI file or upload your own!</div>
+                <div class="midi-player-container card-subcontainer">
+                    <label id="midi-player-select-label" class="card-bolded-text">Select Preset MIDI File:</label>
+                    <select id="midi-player-select-dropdown" class="card-dropdown">
+                        <option value="" disabled selected>Select</option>
+                    </select>
+                    <label id="midi-player-upload-label" class="card-bolded-text">Upload MIDI File: </label>
+                    <input type="file" id="midi-player-upload-button" class="midi-player-upload-button card-button" accept=".mid,.midi">
+                    <label id="midi-current-file-label" class="card-bolded-text"></label>
+                    <div class="midi-playback">
+                        <div class="midi-playback-buttons">
+                            <button id="midi-play" class="card-play-button">Play</button>    
+                            <label id="midi-loop-label">Looping: </label>
+                            <input type="checkbox" id="midi-loop-checkbox">
+                        </div>
+                        <div class="midi-speed-control">
+                            <label id="midi-speed-control-label">Speed:</label>
+                            <input type="range" min="0.001" max="2.01" step="0.05" value="1.0" id="midi-speed-control-bar"></input>
+                            <label id="midi-speed-control-value">1.0x</label>
+                        </div>
+                        <div id="midi-progress-bar">
+                            <div id="midi-progress-fill"></div>
+                            <div id="midi-progress-handle"></div>
+                        </div>
+                        <div class="midi-time-display">
+                            <span id="midi-current-time">0:00</span>
+                            <span id="midi-total-time">0:00</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <template id="harmonic-row">
             <div class="harmonic-row">
                 <div class="harmonic-label"></div>
-                <div class="harmonic-volume-control">
-                    <label class="harmonic-volume-label"></label> 
-                    <input type="range" min="0" max="1" step="0.01" class="harmonic-volume-slider"></input>
-                </div>
+                <label class="harmonic-volume-label">Amplitude:</label> 
+                <input type="range" min="0" max="1" step="0.01" class="harmonic-volume-slider card-slider"></input>
+                <hr class="harmonic-row-divider">
             </div>
         </template>
     </body>
