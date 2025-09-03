@@ -10,10 +10,10 @@ The web app is hosted online via GitHub pages. Click here to play: https://harmo
 ### Harmonic Series
 - Add/Remove rows of overtones and change their volume
 - Select a harmonic preset (such as "Church Organ") that will automatically add/remove rows and adjust their volumes
-## Audio
+### Audio
 - Visualize the current waveform being played, using Fourier Synthesis
 - Adjust the Attack, Release, Transpose (in semitones and cents)
-## MIDI
+### MIDI
 - Play a virtual piano keyboard using the computer keyboard and also toggle Sustain, Octave, Velocity, and Pitch Bend
 - Connect an external MIDI device to play
 - Select a preset MIDI file or upload your own MIDI file.
